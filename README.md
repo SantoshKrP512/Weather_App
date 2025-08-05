@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Weather Forecasting Web Application
 
 ## Overview
@@ -31,3 +32,6 @@ This web application provides users with weather forecasts for a specified locat
 - **OpenWeatherMap**: Weather data API.
 - **Google Maps API**: Embedding location maps.
 
+=======
+# Weather_App
+>>>>>>> 9b7dc31fca1c04acc11035ad66fadbab161aaf65
