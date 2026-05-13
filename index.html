@@ -3,53 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEATHER APP</title>
+    <meta name="description" content="SkyGuard Pro - Advanced Weather Intelligence for Human Health and Safety.">
+    <title>SkyGuard Pro | Weather Intelligence</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="android-chrome-192x192.png" type="image/x-icon">
 </head>
 <body>
-    <header>
-        <nav>
-            <h1>Weather☁️</h1>
-            <form> 
-                <input type="text" placeholder="Enter City" id="input">
-                <button type="submit">Search</button>
-            </form>
-            <div class="headerBtn">
-                <button>Navigator</button>
-                <button>Different Weather?</button>
-                <button>Metric: *C, m/s </button>
-                <button>imperial: *F, mph</button>
-            </div>
-        </nav>
-    </header>
+    <div id="bg-container"></div>
 
-    <section>
-        <div class="container">
-            <p><span>Temprature:</span></p>
-            <p><span>Mininum-Temprature:</span></p>
-            <p><span>Max-Temprature:</span></p>
-            <p><span>Wind:</span></p>
-            <p><span>Clouds:</span></p>
-            <p><span>Sunrise:</span></p>
-            <p><span>Sunset:</span></p>
+    <div class="app-wrapper">
+        <!-- Header / Search -->
+        <header class="animate-fade">
+            <div class="brand">
+                <i class="fas fa-shield-alt" style="color: var(--primary-light);"></i>
+                <h1 class="text-gradient">SkyGuard <span style="font-weight: 300;">Pro</span></h1>
+            </div>
+            
+            <form id="search-form" class="search-container">
+                <input type="text" id="city-input" placeholder="Search city (e.g. London)..." autocomplete="off">
+                <button type="submit" class="btn-icon">
+                    <i class="fas fa-search"></i> Search
+                </button>
+                <button type="button" id="geo-btn" class="btn-icon" style="background: var(--glass-bg); margin-left: 5px;">
+                    <i class="fas fa-location-arrow"></i>
+                </button>
+            </form>
+
+            <div class="unit-toggle">
+                <button id="unit-c" class="btn-icon">°C</button>
+                <button id="unit-f" class="btn-icon" style="background: transparent; color: var(--text-dim);">°F</button>
+            </div>
+        </header>
+
+        <!-- Emergency Alert Banner (Hidden by default) -->
+        <div id="alert-banner" class="alert-banner" style="display: none;">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span id="alert-text">Severe Weather Alert: High-speed winds expected.</span>
         </div>
 
-        <iframe
-        width="600"
-        height="450"
-        style="border:0"
-        loading="lazy"
-        src="https://www.google.com/maps?q=&t=&z=13&ie=UTF8&iwloc=&output=embed"
-        >
-      </iframe>
-    </section>
+        <main class="dashboard-grid">
+            <!-- Left Column: Main Weather -->
+            <section class="glass-card main-weather animate-fade">
+                <div class="current-weather-info">
+                    <div>
+                        <h2 id="city-name" style="font-size: 2.5rem;">Loading...</h2>
+                        <p id="current-date" class="text-dim">Wednesday, 13 May</p>
+                    </div>
+                    <div id="weather-icon-large">
+                        <i class="fas fa-sun" style="font-size: 4rem; color: #fbbf24;"></i>
+                    </div>
+                </div>
 
-    <section class="forecast">
-        <h2>5-Day Forecast</h2>
-        <div class="forecast-container"></div>
-    </section>
+                <div style="display: flex; align-items: baseline; gap: 1rem;">
+                    <span id="main-temp" class="temp-large">0°</span>
+                    <div class="text-dim">
+                        <p id="weather-desc" style="text-transform: capitalize; font-size: 1.25rem;">Clear Sky</p>
+                        <p>H: <span id="max-temp">0°</span> L: <span id="min-temp">0°</span></p>
+                    </div>
+                </div>
 
+                <div class="weather-details-grid">
+                    <div class="detail-item">
+                        <i class="fas fa-wind"></i>
+                        <div id="wind-speed" class="detail-value">0 m/s</div>
+                        <div class="detail-label">Wind</div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-droplet"></i>
+                        <div id="humidity" class="detail-value">0%</div>
+                        <div class="detail-label">Humidity</div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-compress-arrows-alt"></i>
+                        <div id="pressure" class="detail-value">0 hPa</div>
+                        <div class="detail-label">Pressure</div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-eye"></i>
+                        <div id="visibility" class="detail-value">0 km</div>
+                        <div class="detail-label">Visibility</div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-sun"></i>
+                        <div id="uv-index" class="detail-value">0</div>
+                        <div class="detail-label">UV Index</div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-leaf"></i>
+                        <div id="aqi-value" class="detail-value">0</div>
+                        <div class="detail-label">AQI</div>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <iframe id="map-iframe" src="https://www.google.com/maps?q=London&t=&z=11&ie=UTF8&iwloc=&output=embed"></iframe>
+                </div>
+            </section>
+
+            <!-- Right Column: Health & Advice -->
+            <section class="glass-card advice-card animate-fade" style="animation-delay: 0.1s;">
+                <h3 style="display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-heartbeat" style="color: #ef4444;"></i> Health & Safety Advice
+                </h3>
+                
+                <div id="health-advice-container" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <!-- Advice items will be injected here -->
+                    <div class="advice-item">
+                        <span class="advice-icon">🧘</span>
+                        <div>
+                            <strong style="display: block;">Ideal for Outdoor</strong>
+                            <span class="text-dim" style="font-size: 0.9rem;">The weather is perfect for a walk or exercise.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--glass-border);">
+                    <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-quote-left" style="color: var(--primary-light);"></i> Weather Wisdom
+                    </h3>
+                    <div class="glass-card" style="padding: 1.5rem; background: rgba(255,255,255,0.02); border-radius: var(--radius-md); text-align: center; border-style: dashed;">
+                        <p id="weather-thought" style="font-style: italic; font-size: 1.1rem; color: var(--text-main); line-height: 1.4;">
+                            "Life isn't about waiting for the storm to pass, it's about learning to dance in the rain."
+                        </p>
+                        <p class="text-dim" style="font-size: 0.8rem; margin-top: 1rem; text-transform: uppercase; letter-spacing: 1px;">- Today's Inspiration</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem; padding-top: 2rem;">
+                    <h3 style="margin-bottom: 1.5rem;">Safety Checklist</h3>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
+                        <li style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem;">
+                            <i class="fas fa-check-circle" style="color: var(--accent);"></i> Stay Hydrated
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem;">
+                            <i class="fas fa-check-circle" style="color: var(--accent);"></i> Check AQI before exercise
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem;">
+                            <i class="fas fa-check-circle" style="color: var(--accent);"></i> Keep an umbrella handy
+                        </li>
+                    </ul>
+                </div>
+
+                <div style="margin-top: auto; padding-top: 2.5rem;">
+                    <h3 style="margin-bottom: 1rem;">Sun Schedule</h3>
+                    <div style="display: flex; justify-content: space-between; background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 20px;">
+                        <div style="text-align: center;">
+                            <i class="fas fa-sunrise" style="color: #fbbf24; margin-bottom: 0.5rem; display: block;"></i>
+                            <span id="sunrise-time">--:--</span>
+                            <div class="detail-label">Sunrise</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <i class="fas fa-sunset" style="color: #f59e0b; margin-bottom: 0.5rem; display: block;"></i>
+                            <span id="sunset-time">--:--</span>
+                            <div class="detail-label">Sunset</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Forecast Section -->
+        <section class="forecast-section animate-fade" style="animation-delay: 0.2s;">
+            <h3 class="text-gradient">5-Day Intelligence Forecast</h3>
+            <div id="forecast-container" class="forecast-container">
+                <!-- Forecast cards will be injected here -->
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer style="margin-top: 4rem; padding: 3rem; text-align: center; background: var(--glass-bg); backdrop-filter: var(--blur); border-radius: var(--radius-md); border: 1px solid var(--glass-border); display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
+            <div class="creator-badge" style="margin-left: 0; padding: 0.6rem 1.2rem; font-size: 0.9rem;">
+                <i class="fas fa-code"></i> Project By: <strong>Santosh Kumar Paswan</strong>
+            </div>
+            <p class="text-dim" style="font-size: 0.9rem;">
+                © 2026 SkyGuard Pro. All rights reserved.
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 </html>
