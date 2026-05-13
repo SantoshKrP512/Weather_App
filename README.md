@@ -1,37 +1,56 @@
-<<<<<<< HEAD
-# Weather Forecasting Web Application
+# 🛡️ SkyGuard Pro | Weather Intelligence Platform
 
-## Overview
-This web application provides users with weather forecasts for a specified location. Users can search for a city, and the application will display the current weather conditions, a map showing the searched location, and a 5-day weather forecast. The application utilizes HTML, CSS, and JavaScript, and it fetches data from the OpenWeatherMap API.
+**SkyGuard Pro** is a production-grade weather intelligence platform designed to prioritize human health and safety. Transformed from a basic weather app into a professional dashboard, it combines real-time meteorological data with human-centric health insights and a stunning Glassmorphism UI.
 
-## Features
-- **Current Weather**: Displays current weather conditions, including temperature, wind speed, cloud cover, sunrise, and sunset times.
-- **Location Map**: Shows the searched location on an embedded Google Map.
-- **5-Day Forecast**: Provides a forecast for the next 5 days, including date, weather icon, temperature, and description.
+![SkyGuard Pro Dashboard](/C:/Users/paswa/.gemini/antigravity/brain/0c469620-07c7-40d8-aa29-2281d2fa4a3a/screenshot_1.png)
 
-## Usage
-1. **Search for a City**: Enter the name of the city you want to check the weather for in the search bar.
-2. **View Current Weather**: The current weather conditions for the specified city will be displayed.
-3. **Explore Location Map**: An embedded Google Map will show the location of the searched city.
-4. **Check 5-Day Forecast**: Scroll down to view the 5-day weather forecast, including date, weather icon, temperature, and description.
+## 🌟 Key Features
 
-## Technologies Used
-- **HTML**: Markup language for creating the structure of the web page.
-- **CSS**: Styling language used for designing the appearance of the web page.
-- **JavaScript**: Programming language used for dynamic behavior and fetching data from the API.
-- **OpenWeatherMap API**: Provides weather data used in the application.
-- **Google Maps API**: Embeds a map to display the searched location.
+### 🏥 Human-Centric Health Intelligence
+- **AQI Monitoring**: Real-time Air Quality Index tracking to ensure outdoor safety.
+- **UV Index Awareness**: Stay protected from harmful radiation with live UV data.
+- **Smart Health Advice**: A custom logic engine providing actionable tips (e.g., hydration reminders, clothing suggestions, pollution alerts).
+- **Weather Wisdom**: Daily inspirational quotes and safety checklists to enhance well-being.
 
-## Setup
-1. Clone the repository to your local machine.
-2. Open the `index.html` file in a web browser.
-3. Ensure you have an active internet connection to fetch weather data from the OpenWeatherMap API.
-4. Start searching for weather forecasts by entering city names in the search bar.
+### 💎 Premium Experience
+- **Glassmorphism UI**: A high-end, frosted-glass design system with fluid animations and 3D hover effects.
+- **Dynamic Backgrounds**: An animated mesh background system that shifts color based on local weather conditions (Rain, Clouds, Sun, Night).
+- **Auto-Geolocation**: Instantly detects your local weather on startup.
+- **Unit Switching**: Seamlessly toggle between Metric (°C/m/s) and Imperial (°F/mph).
 
-## Credits
-- **OpenWeatherMap**: Weather data API.
-- **Google Maps API**: Embedding location maps.
+### 📊 Professional Data Visualization
+- **Interactive Maps**: Integrated Google Maps for spatial context of your weather.
+- **5-Day Outlook**: Detailed intelligence forecast breaking down daily transitions.
+- **Sun Schedule**: Precise sunrise and sunset timings for solar awareness.
 
-=======
-# Weather_App
->>>>>>> 9b7dc31fca1c04acc11035ad66fadbab161aaf65
+## 🛠️ Technology Stack
+
+- **Frontend**: Vanilla HTML5, CSS3 (Advanced Variables & Animations), JavaScript (ES6+)
+- **Design System**: Glassmorphism (Backdrop Filters, Mesh Gradients)
+- **APIs**:
+  - [OpenWeatherMap API](https://openweathermap.org/api) (Weather, Forecast, AQI)
+  - [Google Maps API](https://developers.google.com/maps) (Location Visualization)
+- **Iconography**: FontAwesome 6 (Pro-style integration)
+
+## 🚀 Getting Started
+
+### Prerequisites
+- A modern web browser (Chrome, Edge, Firefox, Safari).
+- An internet connection.
+
+### Setup
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/SantoshKrP512/Weather_App.git
+   ```
+2. Open `index.html` in your favorite browser.
+3. (Optional) Replace the `CONFIG.API_KEY` in `script.js` with your own OpenWeatherMap key if needed.
+
+## 🤝 Credits
+
+- **Made By**: Santosh Kumar Paswan
+- **Data Source**: OpenWeatherMap
+- **Mapping**: Google Maps
+
+---
+*Elevating weather data into human safety intelligence.*
